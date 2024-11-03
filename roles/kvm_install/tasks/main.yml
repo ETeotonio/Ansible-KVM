@@ -8,7 +8,7 @@
   ansible.builtin.dnf:
     name: "{{ item }}"
     state: present
-  loop: ["qemu-kvm","libvirt","virt-manager","virt-install","bridge-utils","libguestfs-tools"]
+  loop: ["qemu-kvm","libvirt","virt-manager","virt-install","bridge-utils","libguestfs-tools","libvirt-devel"]
 
 - name: Enable LibvirtD service
   ansible.builtin.service:
