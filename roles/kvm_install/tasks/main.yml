@@ -1,0 +1,29 @@
+---
+- name: Check if Virtualization is Enabled
+  shell: egrep -c '(vmx|svm)' /proc/cpuinfo
+  register: output
+  failed_when: output.stdout == 0
+
+- name: Installing Pre-req packages
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: present
+  loop: ["qemu-kvm","libvirt","virt-manager","virt-install","bridge-utils","libguestfs-tools"]
+
+- name: Enable LibvirtD service
+  ansible.builtin.service:
+    name: libvirtd
+    enabled: yes
+    state: restarted
+
+- name: Install Cockpit
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: present
+  loop: ["cockpit","cockpit-machines"]
+
+- name: Enable Cockpit service
+  ansible.builtin.service:
+    name: cockpit.socket
+    enabled: yes
+    state: restarted
