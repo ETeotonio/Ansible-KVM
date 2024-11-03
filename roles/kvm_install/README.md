@@ -6,7 +6,7 @@ Installs KVM and Cockpit
 Example Playbook
 ----------------
 
-- name: Setup KVM on Bare Metal
+```- name: Setup KVM on Bare Metal
 
   hosts: bare_metal
 
@@ -14,7 +14,7 @@ Example Playbook
 
   roles:
 
-    - role: kvm_install
+    - role: kvm_install```
 
 License
 -------

@@ -18,23 +18,18 @@ Playbook and Role to Install KVM and Cockpit to Rocky Linux 9.
 ## Folder Organization
 
 ── inventory - containing the inventory.yml with the hosts
-
 ├── playbooks - with the Playbook invoking the role
-
 └── roles - with the roles
-
     └── kvm_install
-
         ├── meta
-
         └── tasks - Tasks to install KVM and Cockpit
 
 ## How to Run the Playbook
 
 Use the following command to test:
 
-```ansible-playbook playbooks/kvm.yml --check``
+```ansible-playbook playbooks/kvm.yml --check```
 
 Use the following command to run the playbook:
 
-```ansible-playbook playbooks/kvm.yml -kK``
+```ansible-playbook playbooks/kvm.yml -kK```
