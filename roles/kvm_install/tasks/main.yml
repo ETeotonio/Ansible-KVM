@@ -8,7 +8,7 @@
   ansible.builtin.dnf:
     name: "{{ item }}"
     state: present
-  loop: ["qemu-kvm","libvirt","virt-manager","virt-install","bridge-utils","libguestfs-tools","libvirt-devel"]
+  loop: ["qemu-kvm","libvirt","virt-manager","virt-install","bridge-utils","libguestfs-tools","libvirt-devel","ca-certificates","openssl"]
 
 - name: Enable LibvirtD service
   ansible.builtin.service:
@@ -27,3 +27,15 @@
     name: cockpit.socket
     enabled: yes
     state: restarted
+
+- name: Enable virtqemud service
+  ansible.builtin.service:
+    name: virtqemud.socket
+    enabled: yes
+    state: restarted    
+
+- name: Add user to group
+  user:
+    name: "{{ ansible_facts['env']['SUDO_USER'] }}"
+    groups: libvirt
+    append: yes    
